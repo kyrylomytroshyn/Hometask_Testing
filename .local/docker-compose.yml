@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+
+  courses:
+    container_name: "courses"
+    build:
+      context: ../.
+      dockerfile: .local/Dockerfile
+    working_dir: /code
+    volumes:
+      - ../.:/code
+    entrypoint:
+      - /code/.local/bash/entrypoint.sh
+    ports:
+      - 8000:8000
+    image: courses-image
+    restart: always
