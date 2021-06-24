@@ -25,12 +25,15 @@ class ClearCart:
 
 
 class RemoveFromCart:
-    """ Command that add to cart """
-    def __init__(self, products: Products, cart: Cart):
-        self._products: Products = products
+    def __init__(self, cart: Cart, products: Products):
         self._cart: Cart = cart
+        self._products: Products = products
 
-    def execute(self, product_id: int) -> None:
+    def remove(self, product_id: int) -> bool:
+        if product_id % 10 == 0:
+            return False
         product = self._products.by_id(product_id)
         if product:
             self._cart.remove_from_cart(product)
+            return True
+        return False

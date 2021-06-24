@@ -13,10 +13,19 @@ class Cart:
         self._products.append(product)
 
     def remove_from_cart(self, product: Product) -> None:
-        self._products.remove(product)
+        if product in self._products:
+            self._products.remove(product)
 
     def get_products(self) -> List[Product]:
         return self._products
 
     def clear(self) -> None:
         self._products = []
+
+    NUMBER_LENGTH = 12
+
+    def is_phone_number(self, phone_number: str) -> bool:
+        return (len(phone_number) == self.NUMBER_LENGTH
+            ) and (
+                phone_number.isdigit()
+            )
